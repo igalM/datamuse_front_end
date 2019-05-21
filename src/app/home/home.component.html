@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="header">
+        <h1><u>DataMuse</u></h1>
+    </div>
+    <div class="buttons">
+        <button (click)='fetchService.fetchData()'>Fetch Words</button>
+        <button (click)='fetchService.getAllWords()'>Show Report</button>
+    </div>
+    <div class="progress-text">
+      <h3>{{fetchService.progress}}</h3>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h3 *ngIf='fetchService.wordsArray.affiliate'>
+                Affiliate-{{fetchService.wordsArray.affiliate.length}}
+            </h3>
+            <ul>
+                <li *ngFor='let i of fetchService.wordsArray.affiliate'>
+                    {{i.word}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3 *ngIf='fetchService.wordsArray.marketing'>
+                Marketing-{{fetchService.wordsArray.marketing.length}}
+            </h3>
+            <ul>
+                <li *ngFor='let i of fetchService.wordsArray.marketing'>
+                    {{i.word}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3 *ngIf='fetchService.wordsArray.influencer'>
+                Influencer-{{fetchService.wordsArray.influencer.length}}
+            </h3>
+            <ul>
+                <li *ngFor='let i of fetchService.wordsArray.influencer'>
+                    {{i.word}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
