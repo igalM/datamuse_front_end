@@ -11,31 +11,31 @@
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <h3 *ngIf='fetchService.wordsArray.affiliate'>
-                Affiliate-{{fetchService.wordsArray.affiliate.length}}
+            <h3 *ngIf='words.affiliate'>
+                Affiliate-{{words.affiliate.length}}
             </h3>
             <ul>
-                <li *ngFor='let i of fetchService.wordsArray.affiliate'>
+                <li *ngFor='let i of words.affiliate'>
                     {{i.word}}
                 </li>
             </ul>
         </div>
         <div class="col-sm-4">
-            <h3 *ngIf='fetchService.wordsArray.marketing'>
-                Marketing-{{fetchService.wordsArray.marketing.length}}
+            <h3 *ngIf='words.marketing'>
+                Marketing-{{words.marketing.length}}
             </h3>
             <ul>
-                <li *ngFor='let i of fetchService.wordsArray.marketing'>
+                <li *ngFor='let i of words.marketing'>
                     {{i.word}}
                 </li>
             </ul>
         </div>
         <div class="col-sm-4">
-            <h3 *ngIf='fetchService.wordsArray.influencer'>
-                Influencer-{{fetchService.wordsArray.influencer.length}}
+            <h3 *ngIf='words.influencer'>
+                Influencer-{{words.influencer.length}}
             </h3>
             <ul>
-                <li *ngFor='let i of fetchService.wordsArray.influencer'>
+                <li *ngFor='let i of words.influencer'>
                     {{i.word}}
                 </li>
             </ul>

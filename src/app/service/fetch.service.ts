@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { forkJoin } from 'rxjs';
+import { forkJoin, BehaviorSubject } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import * as dbActions from '../util/database.js';
 
@@ -9,7 +9,7 @@ import * as dbActions from '../util/database.js';
   providedIn: 'root'
 })
 export class FetchService {
-  wordsArray: [] = [];
+  wordsArray: BehaviorSubject<[]> = new BehaviorSubject(null);
   progress: string = '';
 
   constructor(private http: HttpClient) { }
@@ -39,7 +39,7 @@ export class FetchService {
 
   getAllWords = async () => {
     const data = await dbActions.retreiveData();
-    this.wordsArray = data;
+    this.wordsArray.next(data);
   }
 
 

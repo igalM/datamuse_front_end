@@ -11,24 +11,36 @@ export const createTables = () => {
 }
 
 export const insertToDB = (table, word) => {
-    debugger;
     db.transaction(tx => {
         tx.executeSql(`INSERT INTO ${table} (word) VALUES (?)`, [word]);
     });
 }
 
 export const retreiveData = () => {
-    const sortedWords = [];
+    return new Promise(resolve => {
+        const promises = [];
+        for (let table of tables) {
+            promises.push(getSqlPromise(table));
+        };
+        Promise.all(promises)
+            .then(array => {
+                const sortedArray = array.reduce((map, obj) => {
+                    map[Object.keys(obj)[0]] = obj[Object.keys(obj)[0]];
+                    return map;
+                }, {})
+                resolve(sortedArray);
+            })
+    });
+}
+
+const getSqlPromise = (table) => {
     return new Promise(resolve => {
         db.transaction(tx => {
-            for (let table of tables) {
-                tx.executeSql(`SELECT * FROM ${table}`, [], (tx, results) => {
-                    sortedWords.push({ table: results.rows });
-                });
-            };
-            resolve(sortedWords);
+            tx.executeSql(`SELECT * FROM ${table}`, [], (tx, results) => {
+                resolve({ [table]: results.rows });
+            })
         });
-    });
+    })
 }
 
 

@@ -7,8 +7,11 @@ import { FetchService } from '../service/fetch.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  words: [] = [];
   constructor(private fetchService: FetchService) {
+    this.fetchService.wordsArray.subscribe(data => {
+      if (data) this.words = data;
+    });
   }
 
   ngOnInit() {
