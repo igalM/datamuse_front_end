@@ -8,6 +8,10 @@
     justify-content: center;
     margin-top: 10px;
 }
+.buttons button{
+    margin: 10px;
+}
+
 .progress-text{
     text-align: center;
     color: red;
